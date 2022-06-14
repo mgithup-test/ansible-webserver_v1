@@ -14,4 +14,4 @@ steps:
    sudo apt-get update -y
    sudo apt-get install -y ansible-lint
    ansible-lint --version
-displayName: “Installing Ansible lint”
+displayName: 'Installing Ansible lint'
