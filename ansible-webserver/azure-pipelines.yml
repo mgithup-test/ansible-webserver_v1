@@ -1,0 +1,22 @@
+trigger:
+ - main
+pool:
+  name: 'default'
+steps:
+ - script: |
+    echo "First pipeline script"
+    echo "Another line of code "
+
+ - script: |
+    sudo apt-get update -y
+    sudo apt install -y ansible
+    ansible --version
+   displayName: "Installing Ansible"
+ - script: |
+    sudo apt-get update -y
+    sudo apt-get install -y ansible-lint
+    ansible-lint --version
+   displayName: "Installing Ansible lint"
+   
+ - script: ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu -i ./host_inventory ./playbooks/apache-install.yml --private-key '/home/ubuntu/.ssh/gp-13-june-22.pem' 
+   displayName: 'installing apcahe '
